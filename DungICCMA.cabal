@@ -1,0 +1,37 @@
+name:          DungICCMA
+category:      Argumentation, Embedded, AI
+version:       1.1
+license:       BSD3
+cabal-version: >= 1.6
+license-file:  LICENSE
+author:        Bas van Gijzel
+maintainer:    Bas van Gijzel <bmv@cs.nott.ac.uk>
+stability:     experimental
+homepage:      http://www.cs.nott.ac.uk/~bmv/DungICCMA/
+copyright:     Copyright (C) 2015 Bas van Gijzel
+synopsis:      An ICCMA-compliant command line application for the Dung library.
+description:   A command line application written on top of the Dung library
+               satisfying the ICCMA (probo) guidelines. See 
+               <http://argumentationcompetition.org/2015/index.html>.
+
+build-type:    Simple
+
+Extra-Source-Files:
+                           CHANGELOG
+                           dungex.txt
+
+Executable dungell_iccma
+  build-depends:
+    base                   >= 4,
+    containers             >= 0.3      && < 0.6,
+    cmdargs                >= 0.10.2,
+    parsec                 >= 3,
+    Dung                   >= 1.1
+
+  main-Is:                 Main.hs
+  hs-source-dirs:          src
+
+	
+source-repository head
+  Type:     git
+  Location: https://github.com/nebasuke/DungICCMA
