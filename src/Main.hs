@@ -161,7 +161,7 @@ solveProblemArg s       _  _  = error $ "Input not properly processed to solvePr
 -- Solve a given enumeration problem, for a specific AF.
 solveProblem :: (Show arg, Eq arg, Ord arg) => String -> DungAF arg -> String
 solveProblem "EE-CO" af = show $ completeF af
-solveProblem "EE-GR" af = show . groundedF' $ f af 
+solveProblem "EE-GR" af = show . (: []) . groundedF' $ f af 
 solveProblem "EE-PR" af = show $ preferredF af
 solveProblem "EE-ST" af = show $ stableF af
 solveProblem "SE-CO" af = show $ head $ completeF af
