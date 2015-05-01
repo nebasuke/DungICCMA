@@ -137,6 +137,12 @@ problemString = remQuote . show $
          "SE-PR",       -- Enumerate some extension according to Preferred semantics
          "SE-ST"]       -- Enumerate some extension according to Stable semantics
 
+problemFullString :: String 
+problemFullString = remQuote . show $ 
+   ["EE-CO", "EE-GR", "EE-PR", "EE-ST", "SE-CO", "SE-GR",
+    "SE-PR", "SE-ST", "DC-CO", "DC-GR", "DC-PR", "DC-ST",
+    "DS-CO", "DS-GR", "DS-PR", "DS-ST"]
+
 -- Change -fo into --fo to support probo interface.
 fixFormat :: [String] -> [String]
 fixFormat = map (\ s -> if s == "-fo" then "--fo" else s)
@@ -184,7 +190,7 @@ main = do
 optionHandler :: MyOptions -> IO ()
 optionHandler opts@MyOptions{..}  = do 
     when formats  $ putStr formatString  >> exitSuccess
-    when problems $ putStr problemString >> exitSuccess
+    when problems $ putStr problemFullString >> exitSuccess
     unless (map toLower fileFormat == "apx") $ putStrLnErr "Only apx file format is supported" >> exitWith (ExitFailure 1)
     when (null fileName) $ putStrLnErr "--fileName is blank!" >> exitWith (ExitFailure 1)
     input <- readFile fileName
