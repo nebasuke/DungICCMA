@@ -211,7 +211,7 @@ exec opts@MyOptions{..} af = do
     -- print af
     
     -- If an additional argument was used a parameter, use this to handle a decidability problem:
-    unless (null argument) 
+    unless (null argument || null problem) 
        $ if problem `isInfixOf` problemArgString
            then putStr . remQuote $ solveProblemArg problem af argument
            else if problem `isInfixOf` problemString
@@ -219,7 +219,7 @@ exec opts@MyOptions{..} af = do
                   else putStrErr "Problem is not supported!" >> exitWith (ExitFailure 1)
     
     -- If a problem was selected, but no additional argument, then it should be an enumeration problem:
-    when (null argument) $
+    when (null argument && not (null problem)) $
        if problem `isInfixOf` problemString
          then putStr . remQuote $ solveProblem problem af
          else if problem `isInfixOf` problemArgString 
